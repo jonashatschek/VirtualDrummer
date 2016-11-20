@@ -1,0 +1,181 @@
+@font-face {
+    font-family: BebasNeue;
+    src: url(../fonts/BebasNeue.otf);
+}
+html,body{
+	height: 100%;
+}
+body{
+	background-color: #f7f6eb;
+	background-image: url("../img/background.png");
+	margin:0;
+	font-family: BebasNeue;
+	text-align: center;
+}
+p{
+	margin: 0px;
+	padding: 0px;
+	clear:both;
+}
+img{
+	position: absolute;
+}
+ul{
+	list-style-type: none;
+	padding: 0;
+	padding-left: 10px;
+	font-size: 20px;
+	letter-spacing: 2px;
+}
+h1{
+	margin: 0px;
+	padding-top: -10px;
+	font-size: 48px;
+}
+h2{
+	margin: 0px;
+	font-size: 34px;
+	text-decoration: underline;
+}
+.wrapper {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -20px;
+}
+#header{
+	background-color: #333333;
+	height:80px;
+	padding-top:20px;
+	padding-bottom: 20px;
+	color:white;
+}
+#subheading{
+	font-size:18px; 
+}
+#content{
+    width: 70%;
+    height: 460px;
+    margin-left: 15%;
+    margin-top: 20px;
+}
+#history{
+    background-color: #fff3aa;
+    float:left;
+    width:150px;
+    height: 300px;
+    box-shadow: 0px 0px 4px 0px;
+    border-radius: 20px;
+    margin-top: 20px;
+    padding-top: 5px;
+    font-size: 24px;
+    overflow:hidden;
+}
+#drums{
+	float:left;
+	margin-left:10%;
+	margin-right: 10%;
+	margin-top:60px;
+}
+#cymbal{
+	margin-left: 17px;
+	margin-top:-2px;
+	z-index: -1;
+}
+#conga{
+	margin-left:96px;
+	margin-top:90px;
+}
+#bigtom{
+	margin-left:160px;
+	margin-top:42px;
+}
+#bigtomarm{
+	margin-left:210px;
+	margin-top: 72px;
+}
+#bass{
+	margin-left:155px;
+	margin-top:100px;
+}
+#smalltomarm{
+	margin-left: 235px;
+	margin-top: 71px;
+}
+#smalltom{
+	margin-left:248px;
+	margin-top:47px;
+}
+#snare{
+	margin-left:282px;
+	margin-top:82px;
+	z-index: -1;
+}
+#hihat{
+	margin-left:325px;
+	margin-top:48px;
+	z-index: -2;
+}
+#legend{
+	background-color: #fff3aa;
+	width:170px;
+    height: 210px;
+	float:right;
+	text-align: left;
+	box-shadow: 0px 0px 4px 0px;
+    border-radius: 20px;
+    padding-top: left:10px;
+    margin-top: 60px;
+    overflow:auto;
+}
+#demo{
+	clear: both;
+	padding-top: 2%;
+}
+#button1{
+	height: 42px;
+	width: 102px;
+	box-shadow: 0px 0px 4px 2px;
+    border-radius: 10px;
+
+  -webkit-transition: all 0.5s ease;
+     -moz-transition: all 0.5s ease;
+       -o-transition: all 0.5s ease;
+      -ms-transition: all 0.5s ease;
+          transition: all 0.5s ease;
+}
+#button1:hover{
+	height: 50px;
+	width: 110px;
+}
+#footer{
+	background-color: #333333;
+	height:20px;
+	color: white;
+}
+#footer, .push {
+	height: 20px;
+}
+@keyframes bounce {
+	0%{}
+	25%{
+		transform: rotate(-5deg) scale(1.15);
+		animation-timing-function: ease-in;
+	}
+	50%{
+		transform: rotate(5deg) scale(1.1);
+		animation-timing-function: ease-in;
+	}
+	to{
+		transform: rotate(0deg) scale(1);
+		animation-timing-function: ease-out;
+	}  
+}
+
+.playing {
+	animation-name: bounce;
+	animation-duration: 0.15s;
+}
+.active {
+	color: #e60000;
+}
