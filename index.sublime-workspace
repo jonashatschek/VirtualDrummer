@@ -3,150 +3,10 @@
 	{
 		"selected_items":
 		[
-			[
-				"stri",
-				"stringCounter"
-			],
-			[
-				"remainin",
-				"remainingInput"
-			],
-			[
-				"remai",
-				"remainingInput"
-			],
-			[
-				"remaining",
-				"remainingInputLength"
-			],
-			[
-				"input",
-				"inputCopy"
-			],
-			[
-				"desc",
-				"description"
-			],
-			[
-				"descr",
-				"description"
-			],
-			[
-				"description",
-				"description"
-			],
-			[
-				"forma",
-				"formatKeeper"
-			],
-			[
-				"hours",
-				"hoursArray"
-			],
-			[
-				"hou",
-				"hoursArray"
-			],
-			[
-				"year",
-				"yearArray"
-			],
-			[
-				"mont",
-				"monthArray"
-			],
-			[
-				"date",
-				"dateArray"
-			],
-			[
-				"finish",
-				"finishingHour"
-			],
-			[
-				"starting",
-				"startingHour"
-			],
-			[
-				"get",
-				"getHours"
-			],
-			[
-				"define",
-				"definedDetails"
-			],
-			[
-				"in",
-				"input"
-			],
-			[
-				"start",
-				"startingPoint"
-			],
-			[
-				"mon",
-				"monthArray"
-			],
-			[
-				"month",
-				"monthType"
-			],
-			[
-				"def",
-				"defineLength"
-			],
-			[
-				"first",
-				"firstNumber"
-			],
-			[
-				"length",
-				"length"
-			],
-			[
-				"len",
-				"length"
-			],
-			[
-				"sep",
-				"separatedInput"
-			],
-			[
-				"le",
-				"length"
-			],
-			[
-				"event",
-				"eventAndDescriptionReturnArray"
-			],
-			[
-				"text",
-				"textHolder"
-			],
-			[
-				"eve",
-				"eventLength"
-			],
-			[
-				"returnEvent",
-				"returnEventLength"
-			],
-			[
-				"coun",
-				"countZerosInText"
-			]
 		]
 	},
 	"buffers":
 	[
-		{
-			"file": "/C/Users/Jonas/Dropbox/g-unit hemlig info ÖPPNA EJ ;o/viktigt.txt",
-			"settings":
-			{
-				"buffer_size": 239,
-				"line_ending": "Windows"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -180,17 +40,11 @@
 	},
 	"file_history":
 	[
-		"/C/Users/Jonas/Documents/GitHub/G-unit-secret-photo-operator/viktigt.txt",
-		"/C/xampp/htdocs/iCalCalculator-master/Exempel jobbtider",
-		"/C/xampp/htdocs/iCalCalculator-master/index.php",
-		"/C/xampp/htdocs/iCalCalculator-master/style.css",
-		"/C/Users/Jonas/Dropbox/david algorith/Davids algorithm/log webserver",
-		"/C/xampp/htdocs/iCalCalculator-master/js.js",
-		"/C/ProgrammingWithGo/src/github.com/jonashatschek/hello/hello.go"
+		"/Users/jonashatschek/Projects/AoC2019daytask1/AoC2019daytask1/input.txt"
 	],
 	"find":
 	{
-		"height": 32.0
+		"height": 0.0
 	},
 	"find_in_files":
 	{
@@ -204,17 +58,6 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"alert",
-			"hoursArray",
-			"dateType",
-			"monthType",
-			"alert",
-			"countNumbersInInput",
-			"countZerosInInput",
-			"16",
-			"14",
-			"alert",
-			"eventdescr"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -232,43 +75,14 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "/C/Users/Jonas/Dropbox/g-unit hemlig info ÖPPNA EJ ;o/viktigt.txt",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 239,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								239,
-								239
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 32.0
+		"height": 0.0
 	},
 	"input":
 	{
@@ -305,7 +119,7 @@
 	"project": "index.sublime-project",
 	"replace":
 	{
-		"height": 60.0
+		"height": 0.0
 	},
 	"save_all_on_build": true,
 	"select_file":

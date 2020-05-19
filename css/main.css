@@ -179,3 +179,10 @@ h2{
 .active {
 	color: #e60000;
 }
+
+/* DRUM LIST */
+
+ul.drumlist > li:hover {
+	color: red;
+	cursor: pointer;
+}

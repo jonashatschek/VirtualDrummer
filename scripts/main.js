@@ -1,90 +1,88 @@
 $(document).ready(function(){
 
-    $('#button1').click(function () {
+	conga = new Drum("83", $('#conga'), $('ul li:nth-child(2)'), "sounds/conga.ogg", 'Conga');
+	bass = new Drum("70", $('#bass'), $('ul li:nth-child(4)'), "sounds/bass.ogg", 'Bass');
+	hihat = new Drum("76", $('#hihat'), $('ul li:nth-child(7)'), "sounds/hihat.ogg", 'Hihat');
+	cymbal = new Drum("65", $('#cymbal'), $('ul li:nth-child(1)'), "sounds/cymbal.ogg", 'Cymbal');
+	smalltom = new Drum("74", $('#smalltom'), $('ul li:nth-child(5)'), "sounds/tom1.ogg", 'Small tom');
+	bigtom = new Drum("68", $('#bigtom'), $('ul li:nth-child(3)'), "sounds/tom2.ogg", 'Big tom');
+	snare = new Drum("75", $('#snare'), $('ul li:nth-child(6)'), "sounds/snare.ogg", 'Snare');
+
+
+    $('#drumdemo').click(function () {
 
         var keysArray = [70, 76, 75, 76, 70, 76, 75, 76, 70, 76, 75, 76, 70, 76, 75, 76, 65];
 
     	for (var i = 0; i < 17; i++){
     		var speed = 500 * i;
-    		timenextKey(keysArray[i], speed);
+    		timeNextKey(keysArray[i], speed);
     	}
 
     });
 
 	$('body').keydown(function(e){
-		var drumId;
-		var legend;
+
+		play(e.keyCode);
+
+	});
+})
+
+function play(keyCode){
+
 		var demo = new Audio();
 
-		switch(e.keyCode){
-			case 83:
-				drumId = $('#conga');
-				legend = $('ul li:nth-child(2)');
-				highlightLegend(legend);
-				playAnimation(drumId);
-				demo.src="sounds/conga.ogg";
+		switch(keyCode.toString()){
+			case conga.keyCode:
+				highlightLegend(conga.legend);
+				playAnimation(conga.drumId);
+				demo.src=conga.soundFilePath;
 				demo.play();
-				updateHistory('Conga');
-				highlightLegend(legend);
+				updateHistory(conga.name);
 				break;
-			case 70:
-				drumId = $('#bass');
-				legend = $('ul li:nth-child(4)');
-				highlightLegend(legend);
-				playAnimation(drumId);
-				demo.src="sounds/bass.ogg";
+			case bass.keyCode:
+				highlightLegend(bass.legend);
+				playAnimation(bass.drumId);
+				demo.src=bass.soundFilePath;
 				demo.play();
-				updateHistory('Bass drum');
+				updateHistory(bass.name);
 				break;
-			case 76:
-				drumId = $('#hihat');
-				legend = $('ul li:nth-child(7)');
-				highlightLegend(legend);
-				playAnimation(drumId);
-				demo.src="sounds/hihat.ogg";
+			case hihat.keyCode:
+				highlightLegend(hihat.legend);
+				playAnimation(hihat.drumId);
+				demo.src=hihat.soundFilePath;
 				demo.play();
-				updateHistory('Hihat');
+				updateHistory(hihat.name);
 				break;
-			case 65:
-				drumId = $('#cymbal');
-				legend = $('ul li:nth-child(1)');
-				highlightLegend(legend);
-				playAnimation(drumId);
-				demo.src="sounds/cymbal.ogg";
+			case cymbal.keyCode:
+				highlightLegend(cymbal.legend);
+				playAnimation(cymbal.drumId);
+				demo.src=cymbal.soundFilePath;
 				demo.play();
-				updateHistory('Cymbal');
+				updateHistory(cymbal.name);
 				break;
-			case 74:
-				drumId = $('#smalltom');
-				legend = $('ul li:nth-child(5)');
-				highlightLegend(legend);
-				playAnimation(drumId);
-				demo.src="sounds/tom1.ogg";
+			case smalltom.keyCode:
+				highlightLegend(smalltom.legend);
+				playAnimation(smalltom.drumId);
+				demo.src=smalltom.soundFilePath;
 				demo.play();
-				updateHistory('Small tom');
+				updateHistory(smalltom.name);
 				break;
-			case 68:
-				drumId = $('#bigtom');
-				legend = $('ul li:nth-child(3)');
-				highlightLegend(legend);
-				playAnimation(drumId);
-				demo.src="sounds/tom2.ogg";
+			case bigtom.keyCode:
+				highlightLegend(bigtom.legend);
+				playAnimation(bigtom.drumId);
+				demo.src=bigtom.soundFilePath;
 				demo.play();
-				updateHistory('Big tom');
+				updateHistory(bigtom.name);
 				break;
-			case 75:
-				drumId = $('#snare');
-				legend = $('ul li:nth-child(6)');
-				highlightLegend(legend);
-				playAnimation(drumId);
-				demo.src="sounds/snare.ogg";
-				updateHistory('Snare');
+			case snare.keyCode:
+				highlightLegend(snare.legend);
+				playAnimation(snare.drumId);
+				demo.src=snare.soundFilePath;
 				demo.play();
+				updateHistory(snare.name);
 				break;
-	}
-
-	})
-})
+		}
+}
 
 function playAnimation(element) {
 	element.addClass('playing').delay(250).queue(function(){
@@ -97,14 +95,14 @@ function updateHistory(drum) {
 	$("#historycontent").prepend("<p>" +drum + "</p>");
 }
 
-function playdemoKey(key) {
+function playDemoKey(key) {
 	var play = $.Event("keydown", { keyCode: key});
 	$("body").trigger(play);
 }
 
-function timenextKey(key, time) {
+function timeNextKey(key, time) {
 	setTimeout(function(){
-    	playdemoKey(key);
+    	playDemoKey(key);
     }, time);
 }
 
@@ -114,3 +112,18 @@ function highlightLegend(element) {
 			element.dequeue();
 	})
 }
+
+class Drum {
+  constructor(keyCode, drumId, legend, path, name) {
+    this.keyCode = keyCode;
+    this.drumId = drumId;
+    this.legend = legend;
+    this.soundFilePath = path;
+    this.name = name;
+  }
+  setKey(key) {
+    this.keyCode = key;
+  }
+}
+
+
