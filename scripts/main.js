@@ -57,7 +57,7 @@ $(document).ready(function(){
 	$('#OkBtn').click(function(){
 		var drum = drumArray.find(element => element.key == $("#popup").attr("drumkey"));
 		drum.key = $("#bigLetterInPopup").html().toUpperCase();
-		drum.keyCode = drum.key.charCodeAt(0);
+		drum.keyCode = drum.key.charCodeAt(0).toString();
 		$("#popup").addClass("hidden");
 		$("#selectNewKey").addClass("hidden");
 		$("#changeKey").removeClass("hidden");
