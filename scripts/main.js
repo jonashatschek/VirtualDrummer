@@ -1,12 +1,12 @@
 $(document).ready(function(){
 
-	conga = new Drum("S", "83", $('#conga'), $('ul li:nth-child(2)'), "sounds/conga.ogg", 'Conga');
-	bass = new Drum("F", "70", $('#bass'), $('ul li:nth-child(4)'), "sounds/bass.ogg", 'Bass');
-	hihat = new Drum("L", "76", $('#hihat'), $('ul li:nth-child(7)'), "sounds/hihat.ogg", 'Hihat');
 	cymbal = new Drum("A", "65", $('#cymbal'), $('ul li:nth-child(1)'), "sounds/cymbal.ogg", 'Cymbal');
-	smalltom = new Drum("J", "74", $('#smalltom'), $('ul li:nth-child(5)'), "sounds/tom1.ogg", 'Small tom');
+	conga = new Drum("S", "83", $('#conga'), $('ul li:nth-child(2)'), "sounds/conga.ogg", 'Conga');
 	bigtom = new Drum("D", "68", $('#bigtom'), $('ul li:nth-child(3)'), "sounds/tom2.ogg", 'Big tom');
+	bass = new Drum("F", "70", $('#bass'), $('ul li:nth-child(4)'), "sounds/bass.ogg", 'Bass');
+	smalltom = new Drum("J", "74", $('#smalltom'), $('ul li:nth-child(5)'), "sounds/tom1.ogg", 'Small tom');
 	snare = new Drum("K", "75", $('#snare'), $('ul li:nth-child(6)'), "sounds/snare.ogg", 'Snare');
+	hihat = new Drum("L", "76", $('#hihat'), $('ul li:nth-child(7)'), "sounds/hihat.ogg", 'Hihat');
 
 	var drumArray = [conga, bass, hihat, cymbal, smalltom, bigtom, snare];
 
@@ -50,26 +50,17 @@ $(document).ready(function(){
 	});
 
 	$('#CancelBtn').click(function(){
-		$("#popup").addClass("hidden");
-		$("#selectNewKey").addClass("hidden");
-		$("#changeKey").removeClass("hidden");
+		hidePopup(); 
 	});
 	$('#OkBtn').click(function(){
-		var drum = drumArray.find(element => element.key == $("#popup").attr("drumkey"));
-		drum.key = $("#bigLetterInPopup").html().toUpperCase();
-		drum.keyCode = drum.key.charCodeAt(0).toString();
-		$("#popup").addClass("hidden");
-		$("#selectNewKey").addClass("hidden");
-		$("#changeKey").removeClass("hidden");
-		console.log(bass);
+		setNewDrumKey(drumArray.find(element => element.key == $("#popup").attr("drumkey")));
+		hidePopup();
 	});
 });
 
 function playKey(keyCode){
 
 	var demo = new Audio();
-	console.log("sent in: " + keyCode);
-	console.log(bass.keyCode);
 
 	switch(keyCode.toString()){
 		case conga.keyCode:
@@ -80,7 +71,6 @@ function playKey(keyCode){
 			updateHistory(conga.name);
 			break;
 		case bass.keyCode:
-			console.log("i'm bass");
 			highlightLegend(bass.legend);
 			playAnimation(bass.drumId);
 			demo.src=bass.soundFilePath;
@@ -125,6 +115,13 @@ function playKey(keyCode){
 		}
 }
 
+function setNewDrumKey(drumObject){
+	drumObject.key = $("#bigLetterInPopup").html().toUpperCase();
+	drumObject.keyCode = drumObject.key.charCodeAt(0).toString();
+	drumObject.legend.empty();
+	drumObject.legend.append(drumObject.key.toString() + " - " + drumObject.name.toString());
+}
+
 function playAnimation(element) {
 	element.addClass('playing').delay(250).queue(function(){
 			element.removeClass('playing');
@@ -152,6 +149,12 @@ function highlightLegend(element) {
 			element.removeClass('active');
 			element.dequeue();
 	})
+}
+
+function hidePopup(){
+	$("#popup").addClass("hidden");
+	$("#selectNewKey").addClass("hidden");
+	$("#changeKey").removeClass("hidden");
 }
 
 function getDrumName(number){
