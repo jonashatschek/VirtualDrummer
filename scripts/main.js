@@ -1,86 +1,127 @@
 $(document).ready(function(){
 
-	conga = new Drum("83", $('#conga'), $('ul li:nth-child(2)'), "sounds/conga.ogg", 'Conga');
-	bass = new Drum("70", $('#bass'), $('ul li:nth-child(4)'), "sounds/bass.ogg", 'Bass');
-	hihat = new Drum("76", $('#hihat'), $('ul li:nth-child(7)'), "sounds/hihat.ogg", 'Hihat');
-	cymbal = new Drum("65", $('#cymbal'), $('ul li:nth-child(1)'), "sounds/cymbal.ogg", 'Cymbal');
-	smalltom = new Drum("74", $('#smalltom'), $('ul li:nth-child(5)'), "sounds/tom1.ogg", 'Small tom');
-	bigtom = new Drum("68", $('#bigtom'), $('ul li:nth-child(3)'), "sounds/tom2.ogg", 'Big tom');
-	snare = new Drum("75", $('#snare'), $('ul li:nth-child(6)'), "sounds/snare.ogg", 'Snare');
+	conga = new Drum("S", "83", $('#conga'), $('ul li:nth-child(2)'), "sounds/conga.ogg", 'Conga');
+	bass = new Drum("F", "70", $('#bass'), $('ul li:nth-child(4)'), "sounds/bass.ogg", 'Bass');
+	hihat = new Drum("L", "76", $('#hihat'), $('ul li:nth-child(7)'), "sounds/hihat.ogg", 'Hihat');
+	cymbal = new Drum("A", "65", $('#cymbal'), $('ul li:nth-child(1)'), "sounds/cymbal.ogg", 'Cymbal');
+	smalltom = new Drum("J", "74", $('#smalltom'), $('ul li:nth-child(5)'), "sounds/tom1.ogg", 'Small tom');
+	bigtom = new Drum("D", "68", $('#bigtom'), $('ul li:nth-child(3)'), "sounds/tom2.ogg", 'Big tom');
+	snare = new Drum("K", "75", $('#snare'), $('ul li:nth-child(6)'), "sounds/snare.ogg", 'Snare');
 
+	var drumArray = [conga, bass, hihat, cymbal, smalltom, bigtom, snare];
 
-    $('#drumdemo').click(function () {
+	$('#drumdemo').click(function () {
 
-        var keysArray = [70, 76, 75, 76, 70, 76, 75, 76, 70, 76, 75, 76, 70, 76, 75, 76, 65];
+	    var keysArray = [bass.keyCode, hihat.keyCode, snare.keyCode, hihat.keyCode, bass.keyCode, hihat.keyCode, snare.keyCode, hihat.keyCode, bass.keyCode, hihat.keyCode, snare.keyCode, hihat.keyCode, bass.keyCode, hihat.keyCode, snare.keyCode, hihat.keyCode, cymbal.keyCode];
 
-    	for (var i = 0; i < 17; i++){
-    		var speed = 500 * i;
-    		timeNextKey(keysArray[i], speed);
-    	}
+		for (var i = 0; i < 17; i++){
+			var speed = 500 * i;
+			timeNextKey(keysArray[i], speed);
+		}
 
-    });
+	});
 
 	$('body').keydown(function(e){
 
-		play(e.keyCode);
+		if($("#popup").hasClass("hidden")){
+			playKey(e.keyCode);
+		}
+		else{
+			if(!$("#selectNewKey").hasClass("hidden")){
+				$("#bigLetterInPopup").html(e.key);
+			}
+		}
+	});
+
+	$('.drumlist').children().click(function() {
+	
+	var drum = drumArray.find(element => element.name == getDrumName($(this).index()));
+
+	$("#popup").append("Current key for " + drum.name + " is " + drum.key + ".");
+	document.getElementById("popup").setAttribute("drumkey", drum.key);
+	$("#popup").removeClass("hidden");
 
 	});
-})
 
-function play(keyCode){
+	$('#changeKey').click(function(){
+		$("#changeKey").addClass("hidden");
+		$("#selectNewKey").removeClass("hidden");
+		$("#bigLetterInPopup").html($("#popup").attr("drumkey"));
+	});
 
-		var demo = new Audio();
+	$('#CancelBtn').click(function(){
+		$("#popup").addClass("hidden");
+		$("#selectNewKey").addClass("hidden");
+		$("#changeKey").removeClass("hidden");
+	});
+	$('#OkBtn').click(function(){
+		var drum = drumArray.find(element => element.key == $("#popup").attr("drumkey"));
+		drum.key = $("#bigLetterInPopup").html().toUpperCase();
+		drum.keyCode = drum.key.charCodeAt(0);
+		$("#popup").addClass("hidden");
+		$("#selectNewKey").addClass("hidden");
+		$("#changeKey").removeClass("hidden");
+		console.log(bass);
+	});
+});
 
-		switch(keyCode.toString()){
-			case conga.keyCode:
-				highlightLegend(conga.legend);
-				playAnimation(conga.drumId);
-				demo.src=conga.soundFilePath;
-				demo.play();
-				updateHistory(conga.name);
-				break;
-			case bass.keyCode:
-				highlightLegend(bass.legend);
-				playAnimation(bass.drumId);
-				demo.src=bass.soundFilePath;
-				demo.play();
-				updateHistory(bass.name);
-				break;
-			case hihat.keyCode:
-				highlightLegend(hihat.legend);
-				playAnimation(hihat.drumId);
-				demo.src=hihat.soundFilePath;
-				demo.play();
-				updateHistory(hihat.name);
-				break;
-			case cymbal.keyCode:
-				highlightLegend(cymbal.legend);
-				playAnimation(cymbal.drumId);
-				demo.src=cymbal.soundFilePath;
-				demo.play();
-				updateHistory(cymbal.name);
-				break;
-			case smalltom.keyCode:
-				highlightLegend(smalltom.legend);
-				playAnimation(smalltom.drumId);
-				demo.src=smalltom.soundFilePath;
-				demo.play();
-				updateHistory(smalltom.name);
-				break;
-			case bigtom.keyCode:
-				highlightLegend(bigtom.legend);
-				playAnimation(bigtom.drumId);
-				demo.src=bigtom.soundFilePath;
-				demo.play();
-				updateHistory(bigtom.name);
-				break;
-			case snare.keyCode:
-				highlightLegend(snare.legend);
-				playAnimation(snare.drumId);
-				demo.src=snare.soundFilePath;
-				demo.play();
-				updateHistory(snare.name);
-				break;
+function playKey(keyCode){
+
+	var demo = new Audio();
+	console.log("sent in: " + keyCode);
+	console.log(bass.keyCode);
+
+	switch(keyCode.toString()){
+		case conga.keyCode:
+			highlightLegend(conga.legend);
+			playAnimation(conga.drumId);
+			demo.src=conga.soundFilePath;
+			demo.play();
+			updateHistory(conga.name);
+			break;
+		case bass.keyCode:
+			console.log("i'm bass");
+			highlightLegend(bass.legend);
+			playAnimation(bass.drumId);
+			demo.src=bass.soundFilePath;
+			demo.play();
+			updateHistory(bass.name);
+			break;
+		case hihat.keyCode:
+			highlightLegend(hihat.legend);
+			playAnimation(hihat.drumId);
+			demo.src=hihat.soundFilePath;
+			demo.play();
+			updateHistory(hihat.name);
+			break;
+		case cymbal.keyCode:
+			highlightLegend(cymbal.legend);
+			playAnimation(cymbal.drumId);
+			demo.src=cymbal.soundFilePath;
+			demo.play();
+			updateHistory(cymbal.name);
+			break;
+		case smalltom.keyCode:
+			highlightLegend(smalltom.legend);
+			playAnimation(smalltom.drumId);
+			demo.src=smalltom.soundFilePath;
+			demo.play();
+			updateHistory(smalltom.name);
+			break;
+		case bigtom.keyCode:
+			highlightLegend(bigtom.legend);
+			playAnimation(bigtom.drumId);
+			demo.src=bigtom.soundFilePath;
+			demo.play();
+			updateHistory(bigtom.name);
+			break;
+		case snare.keyCode:
+			highlightLegend(snare.legend);
+			playAnimation(snare.drumId);
+			demo.src=snare.soundFilePath;
+			demo.play();
+			updateHistory(snare.name);
+			break;
 		}
 }
 
@@ -113,8 +154,30 @@ function highlightLegend(element) {
 	})
 }
 
+function getDrumName(number){
+
+	switch(number){
+		case drumEnum.CYMBAL:
+			return "Cymbal";
+		case drumEnum.CONGA:
+			return "Conga";
+		case drumEnum.BIGTOM:
+			return "Big tom";
+		case drumEnum.BASS:
+			return "Bass";
+		case drumEnum.HIHAT:
+			return "Hihat";
+		case drumEnum.SMALLTOM:
+			return "Small tom";
+		case drumEnum.SNARE:
+			return "Snare";
+
+	}
+}
+
 class Drum {
-  constructor(keyCode, drumId, legend, path, name) {
+  constructor(key, keyCode, drumId, legend, path, name) {
+  	this.key = key;
     this.keyCode = keyCode;
     this.drumId = drumId;
     this.legend = legend;
@@ -126,4 +189,13 @@ class Drum {
   }
 }
 
-
+var drumEnum = {
+CYMBAL: 0,
+CONGA: 1,
+BIGTOM: 2,
+BASS: 3,
+SMALLTOM: 4,
+SNARE: 5,
+HIHAT: 6
+  
+};

@@ -33,6 +33,7 @@
 					<img id="snare" src="img/snare.png">
 					<img id="hihat" src="img/hihatfull.png">
 				</div>
+				<div id="popup" drumkey="" class="hidden"><button id='changeKey'>Change key</button><br><div id="selectNewKey" class="hidden"><div>Press down your new key... </div><div id="bigLetterInPopup"></div><br><button id="CancelBtn">Cancel</button><button id="OkBtn">Done</button></div></div>
 				<div id ="legend">
 					<ul class="drumlist">
   						<li>A - Cymbal</li>
@@ -45,7 +46,7 @@
 					</ul>  
 				</div>
 				<div id="dialog" title="Basic dialog">
-  					<div id="dialogBox" class="dialog">test</div>
+  					<div id="dialogBox" class="dialog"></div>
 				</div>
 				<div id ="demo">
 					<input type="image" src="img/playbuttonred.png" id="drumdemo"/>
@@ -57,15 +58,6 @@
 		<div id="footer">
 			<p>Copyright 2016 Grupp 21</p>
 		</div>
-		  <script>
-		  	$('.drumlist').children().click(function() {
-  		  		//console.log($(this).find('.listitem').text());
-	       		var index = $(this).index();
-        		$("#dialogBox").html(index);
-  		  		$("#dialog").dialog();
-  			});
-
-  </script>
 		<script src="scripts/main.js"></script>
 	</body>
 </html>

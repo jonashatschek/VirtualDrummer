@@ -180,9 +180,37 @@ h2{
 	color: #e60000;
 }
 
-/* DRUM LIST */
-
 ul.drumlist > li:hover {
 	color: red;
 	cursor: pointer;
+}
+
+#popup{
+	background-color: red;
+	height: 100px;
+    width: 200px;
+    position: absolute;
+    left: 50%;
+    top: 25%;
+    border: solid;
+    border-width: thin;
+    border-color: black
+}
+
+#selectNewKey{
+	height: 100px;
+	width: 200px;
+	position: absolute;
+	background-color: green;
+	border: dotted;
+}
+
+.hidden{
+	display: none;
+}
+#changeKey{
+	margin:5px;
+}
+#bigLetterInPopup{
+	font-size: 25px;
 }
