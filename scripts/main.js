@@ -1,12 +1,30 @@
 $(document).ready(function(){
 
-	cymbal = new Drum("A", "65", $('#cymbal'), $('ul li:nth-child(1)'), "sounds/cymbal.ogg", 'Cymbal');
-	conga = new Drum("S", "83", $('#conga'), $('ul li:nth-child(2)'), "sounds/conga.ogg", 'Conga');
-	bigtom = new Drum("D", "68", $('#bigtom'), $('ul li:nth-child(3)'), "sounds/tom2.ogg", 'Big tom');
-	bass = new Drum("F", "70", $('#bass'), $('ul li:nth-child(4)'), "sounds/bass.ogg", 'Bass');
-	smalltom = new Drum("J", "74", $('#smalltom'), $('ul li:nth-child(5)'), "sounds/tom1.ogg", 'Small tom');
-	snare = new Drum("K", "75", $('#snare'), $('ul li:nth-child(6)'), "sounds/snare.ogg", 'Snare');
-	hihat = new Drum("L", "76", $('#hihat'), $('ul li:nth-child(7)'), "sounds/hihat.ogg", 'Hihat');
+	if(getCookie("keysettingsCookie") == ""){
+		cymbal = new Drum("A", "65", $('#cymbal'), $('ul li:nth-child(1)'), "sounds/cymbal.ogg", 'Cymbal');
+		conga = new Drum("S", "83", $('#conga'), $('ul li:nth-child(2)'), "sounds/conga.ogg", 'Conga');
+		bigtom = new Drum("D", "68", $('#bigtom'), $('ul li:nth-child(3)'), "sounds/tom2.ogg", 'Big tom');
+		bass = new Drum("F", "70", $('#bass'), $('ul li:nth-child(4)'), "sounds/bass.ogg", 'Bass');
+		smalltom = new Drum("J", "74", $('#smalltom'), $('ul li:nth-child(5)'), "sounds/tom1.ogg", 'Small tom');
+		snare = new Drum("K", "75", $('#snare'), $('ul li:nth-child(6)'), "sounds/snare.ogg", 'Snare');
+		hihat = new Drum("L", "76", $('#hihat'), $('ul li:nth-child(7)'), "sounds/hihat.ogg", 'Hihat');
+
+		drumset = new DrumSet(snare, conga, cymbal, bass, bigtom, smalltom, hihat);
+	}
+	else{
+		//snare.key, conga.key, cymbal.key, bass.key, bigtom.key, smalltom.key, hihat.key
+		var cookie = getCookie();
+
+		cymbal = new Drum("A", "65", $('#cymbal'), $('ul li:nth-child(1)'), "sounds/cymbal.ogg", 'Cymbal');
+		conga = new Drum("S", "83", $('#conga'), $('ul li:nth-child(2)'), "sounds/conga.ogg", 'Conga');
+		bigtom = new Drum("D", "68", $('#bigtom'), $('ul li:nth-child(3)'), "sounds/tom2.ogg", 'Big tom');
+		bass = new Drum("F", "70", $('#bass'), $('ul li:nth-child(4)'), "sounds/bass.ogg", 'Bass');
+		smalltom = new Drum("J", "74", $('#smalltom'), $('ul li:nth-child(5)'), "sounds/tom1.ogg", 'Small tom');
+		snare = new Drum("K", "75", $('#snare'), $('ul li:nth-child(6)'), "sounds/snare.ogg", 'Snare');
+		hihat = new Drum("L", "76", $('#hihat'), $('ul li:nth-child(7)'), "sounds/hihat.ogg", 'Hihat');
+
+	}
+
 
 	var drumArray = [conga, bass, hihat, cymbal, smalltom, bigtom, snare];
 
@@ -36,24 +54,27 @@ $(document).ready(function(){
 	$('.drumlist').children().click(function() {
 	
 	var drum = drumArray.find(element => element.name == getDrumName($(this).index()));
-
-	$("#popup").append("Current key for " + drum.name + " is " + drum.key + ".");
+	$("#currentKey").empty().append("Current key for " + drum.name + " is " + drum.key + ".");
 	document.getElementById("popup").setAttribute("drumkey", drum.key);
 	$("#popup").removeClass("hidden");
 
 	});
 
 	$('#changeKey').click(function(){
+		$("#OkBtn").removeClass("hidden");
 		$("#changeKey").addClass("hidden");
 		$("#selectNewKey").removeClass("hidden");
 		$("#bigLetterInPopup").html($("#popup").attr("drumkey"));
 	});
 
-	$('#CancelBtn').click(function(){
+	$('.cancelBtn').click(function(){
 		hidePopup(); 
 	});
 	$('#OkBtn').click(function(){
+		var audio = new Audio();
 		setNewDrumKey(drumArray.find(element => element.key == $("#popup").attr("drumkey")));
+		audio.src="sounds/Explosion.wav";
+		audio.play();
 		hidePopup();
 	});
 });
@@ -115,11 +136,14 @@ function playKey(keyCode){
 		}
 }
 
+function getCurrentSet(drumsetObject){
+	return drumsetObject;
+}
+
 function setNewDrumKey(drumObject){
 	drumObject.key = $("#bigLetterInPopup").html().toUpperCase();
 	drumObject.keyCode = drumObject.key.charCodeAt(0).toString();
-	drumObject.legend.empty();
-	drumObject.legend.append(drumObject.key.toString() + " - " + drumObject.name.toString());
+	drumObject.legend.empty().append(drumObject.key.toString() + " - " + drumObject.name.toString());
 }
 
 function playAnimation(element) {
@@ -178,6 +202,53 @@ function getDrumName(number){
 	}
 }
 
+//cookies
+function setCookie(cname, conga, cymbal, bass, bigtom, smalltom, hihat, snare, exdays) {
+  var d = new Date();
+  d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+  var expires = "expires="+d.toUTCString();
+  document.cookie = cname + "=yes;conga=" + conga + ";bass=" + bass + ";cymbal=" + cymbal + ";bigtom=" + bigtom + ";smalltom=" + smalltom + ";hitat=" + hihat + ";snare=" + snare + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+  var name = cname + "=";
+  var ca = document.cookie.split(';');
+  for(var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+function checkCookie() {
+  var cname = getCookie("keysettingsCookie");
+  var conga = getCookie("conga");
+  var bass = getCookie("bass");
+  var cymbal = getCookie("cymbal");
+  var bigtom = getCookie("bigtom");
+  var smalltom = getCookie("smalltom");
+  var hihat = getCookie("hihat");
+  var snare = getCookie("snare");
+
+  if (cname != "yes") {
+    setNewDrumKey(conga);
+    setNewDrumKey(bass);
+    setNewDrumKey(cymbal);
+    setNewDrumKey(bigtom);
+    setNewDrumKey(smalltom);
+    setNewDrumKey(hihat);
+    setNewDrumKey(snare);
+  } else {
+      setCookie("keysettingsCookie", conga, cymbal, bass, bigtom, smalltom, hihat, snare, 365);
+    }
+  }
+}
+
 class Drum {
   constructor(key, keyCode, drumId, legend, path, name) {
   	this.key = key;
@@ -187,9 +258,18 @@ class Drum {
     this.soundFilePath = path;
     this.name = name;
   }
-  setKey(key) {
-    this.keyCode = key;
-  }
+}
+
+class DrumSet {
+	constructor(snare, conga, cymbal, bass, bigtom, smalltom, hihat, snare){
+		this.snare = snare;
+		this.conga = conga;
+		this.bass = bass;
+		this.bigtom = bigtom;
+		this.smalltom = smalltom;
+		this.hihat = hihat;
+		this.snare = snare;
+	}
 }
 
 var drumEnum = {
