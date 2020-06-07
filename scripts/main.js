@@ -53,20 +53,20 @@ $(document).ready(function(){
 
 	$('#OkBtn').click(function(){
 		var drumObject = drumArray.find(element => element.key == $("#popup").attr("drumkey"));
-		setNewDrumKey(drumObject, $("#bigLetterInPopup").html().toUpperCase());
+		keysettings.setNewDrumKey(drumObject, $("#bigLetterInPopup").html().toUpperCase());
 		player.playAudio("sounds/Explosion.wav");
 		hidePopup();
 		cookies.setCookie(conga.key, cymbal.key, bass.key, bigtom.key, smalltom.key, hihat.key, snare.key, 365);
 	});
 
 	$('#resetKeysBtn').click(function(){
-		resetAllKeys();
+		keysettings.resetAllKeys();
 		cookies.setCookie('S', 'A', 'F', 'D', 'J', 'L', 'K', 365);
 	});
 
 });
 
-function resetAllKeys(){
+/*function resetAllKeys(){
 	setNewDrumKey(conga, 'S');
 	setNewDrumKey(cymbal, 'A');
 	setNewDrumKey(bass, 'F');
@@ -74,7 +74,7 @@ function resetAllKeys(){
 	setNewDrumKey(smalltom, 'J');
 	setNewDrumKey(hihat, 'L');
 	setNewDrumKey(snare, 'K');
-}
+}*/
 
 function reloadPopup(){
 	$("#OkBtn").removeClass("hidden");
@@ -83,11 +83,11 @@ function reloadPopup(){
 	$("#bigLetterInPopup").html($("#popup").attr("drumkey"));
 }
 
-function setNewDrumKey(drumObject, newKey){
+/*function setNewDrumKey(drumObject, newKey){
 	drumObject.key = newKey;
 	drumObject.keyCode = drumObject.key.charCodeAt(0).toString();
 	drumObject.legend.empty().append(drumObject.key.toString() + " - " + drumObject.name.toString());
-}
+}*/
 
 function hidePopup(){
 	$("#popup").addClass("hidden");
