@@ -66,10 +66,21 @@ var player = {
 	},
 
 	highlightLegend(element) {
-	element.addClass('active').delay(150).queue(function(){
-		element.removeClass('active');
-		element.dequeue();
-	})
+		element.addClass('active').delay(150).queue(function(){
+			element.removeClass('active');
+			element.dequeue();
+		})
+	},
+
+	playDemoKey(key) {
+		var play = $.Event("keydown", { keyCode: key});
+		$("body").trigger(play);
+	},
+
+	timeNextKey(key, time) {
+		setTimeout(function(){
+	    	playDemoKey(key);
+	    }, time);
 	}
 
 };

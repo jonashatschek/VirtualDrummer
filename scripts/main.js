@@ -18,7 +18,7 @@ $(document).ready(function(){
 
 		for (var i = 0; i < 17; i++){
 			var speed = 500 * i;
-			timeNextKey(keysArray[i], speed);
+			player.timeNextKey(keysArray[i], speed);
 		}
 
 	});
@@ -87,17 +87,6 @@ function setNewDrumKey(drumObject, newKey){
 	drumObject.key = newKey;
 	drumObject.keyCode = drumObject.key.charCodeAt(0).toString();
 	drumObject.legend.empty().append(drumObject.key.toString() + " - " + drumObject.name.toString());
-}
-
-function playDemoKey(key) {
-	var play = $.Event("keydown", { keyCode: key});
-	$("body").trigger(play);
-}
-
-function timeNextKey(key, time) {
-	setTimeout(function(){
-    	playDemoKey(key);
-    }, time);
 }
 
 function hidePopup(){
