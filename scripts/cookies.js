@@ -5,11 +5,10 @@ var cookies = {
 		var expires = "expires="+d.toUTCString();
 		document.cookie = "drumkeysettings=" + ":conga=" + conga + ":bass=" + bass + ":cymbal=" + cymbal + ":big tom=" + bigtom + ":small tom=" + smalltom + ":hihat=" + hihat + ":snare=" + snare + ";" + expires + ";path=/";
 	},
-
 	getCookie(cname, drumName) {
 		var name = cname + "=";
-		var decodedCookie = decodeURIComponent(document.cookie);
-		var ca = decodedCookie.split(':');
+		var ca = decodeURIComponent(document.cookie).split(':');
+		//var ca = decodedCookie.split(':');
 		
 		for(var i = 0; i < ca.length; i++) {
 	    	var c = ca[i];
