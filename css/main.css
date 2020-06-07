@@ -116,7 +116,10 @@ h2{
 	margin-top:48px;
 	z-index: -2;
 }
-#legend{
+#resetKeysBtn{
+	margin-left: 700px;
+}
+.legend{
 	background-color: #fff3aa;
 	width:170px;
     height: 210px;
