@@ -13,8 +13,8 @@
 				<h1>Virtual drummer</h1>
 				<p id="subheading">Learn how to play the drums!</p>
 			</div>
-			<div id = "content">
-				<div id = "history">
+			<div id="content">
+				<div id="history" class="yellowBox">
 					<h2>History</h2>
 					<div id="historycontent">
 					</div>
@@ -31,19 +31,23 @@
 					<img id="hihat" src="img/hihatfull.png">
 				</div>
 				<div id="popup" drumkey="" class="hidden"><br><div id="currentKey"></div><div id="selectNewKey" class="hidden"><div>Press down your new key... </div><div id="bigLetterInPopup"></div><br><button class="cancelBtn">Cancel</button><button id="OkBtn">Done</button></div><button class="cancelBtn">Cancel</button><button id='changeKey'>Change key</button></div>
-				<div class="legend">
-					<ul class="drumlist">
-  						<li><div id="cymbalKey"></div> A - Cymbal</li>
-						<li><div id="congaKey"></div> S - Conga</li>
-						<li><div id="bigtomKey"></div> D - Big tom</li>
-						<li><div id="bassdrumKey"></div> F - Bass</li>
-						<li><div id="smaltomKey"></div> J - Small tom</li>
-						<li><div id="snareKey"></div> K - Snare</li>
-						<li><div id="hihatKey"></div> L - Hihat</li>
-
-					</ul> 
-				</div><br>
-				<button id="resetKeysBtn">Reset keys</button> 
+				<div id="rightDiv">
+					<div class="yellowBox legend">
+						<ul class="drumlist">
+	  						<li><div id="cymbalKey"></div> A - Cymbal</li>
+							<li><div id="congaKey"></div> S - Conga</li>
+							<li><div id="bigtomKey"></div> D - Big tom</li>
+							<li><div id="bassdrumKey"></div> F - Bass</li>
+							<li><div id="smaltomKey"></div> J - Small tom</li>
+							<li><div id="snareKey"></div> K - Snare</li>
+							<li><div id="hihatKey"></div> L - Hihat</li>
+						</ul> 
+						<center><button id="resetKeysBtn">Reset keys</button></center>
+					</div><br>
+					<div class="metronome yellowBox">
+						<span>hello</span>
+					</div>
+				</div>
 				<div id="dialog" title="Basic dialog">
   					<div id="dialogBox" class="dialog"></div>
 				</div>
