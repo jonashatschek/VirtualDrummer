@@ -66,28 +66,12 @@ $(document).ready(function(){
 
 });
 
-/*function resetAllKeys(){
-	setNewDrumKey(conga, 'S');
-	setNewDrumKey(cymbal, 'A');
-	setNewDrumKey(bass, 'F');
-	setNewDrumKey(bigtom, 'D');
-	setNewDrumKey(smalltom, 'J');
-	setNewDrumKey(hihat, 'L');
-	setNewDrumKey(snare, 'K');
-}*/
-
 function reloadPopup(){
 	$("#OkBtn").removeClass("hidden");
 	$("#changeKey").addClass("hidden");
 	$("#selectNewKey").removeClass("hidden");
 	$("#bigLetterInPopup").html($("#popup").attr("drumkey"));
 }
-
-/*function setNewDrumKey(drumObject, newKey){
-	drumObject.key = newKey;
-	drumObject.keyCode = drumObject.key.charCodeAt(0).toString();
-	drumObject.legend.empty().append(drumObject.key.toString() + " - " + drumObject.name.toString());
-}*/
 
 function hidePopup(){
 	$("#popup").addClass("hidden");
