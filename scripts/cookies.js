@@ -10,7 +10,7 @@ var cookies = {
 					var drumName = drumEnum.properties[i].name;
 					var cookie = cookies.getCookie(drumName);
 					var drum = drumArray.find(element => element.name.toUpperCase() == drumName.toUpperCase());
-					setNewDrumKey(drum, cookie);
+					keysettings.setNewDrumKey(drum, cookie);
 					i++;
 				}
 			}
@@ -20,17 +20,16 @@ var cookies = {
 		var d = new Date();
 		d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
 		var expires = "expires="+d.toUTCString();
-		document.cookie = "drumkeysettings=" + ":conga=" + conga + ":bass=" + bass + ":cymbal=" + cymbal + ":big tom=" + bigtom + ":small tom=" + smalltom + ":hihat=" + hihat + ":snare=" + snare + ";" + expires + ";path=/";
+		if(cookies.getCookie("conga") != ""){
+			cookies.deleteAllCookies();
+		}
+		document.cookie = ":conga=" + conga + ":bass=" + bass + ":cymbal=" + cymbal + ":big tom=" + bigtom + ":small tom=" + smalltom + ":hihat=" + hihat + ":snare=" + snare + ";" + expires + ";path=/";
 	},
 	getCookie(drumName) {
 		var ca = decodeURIComponent(document.cookie).split(':');
 		
 		for(var i = 0; i < ca.length; i++) {
 	    	var c = ca[i];
-	    
-		    while (c.charAt(0) == ' ') {
-		      c = c.substring(1);
-		    }
 		    
 		    if (c.indexOf(drumName) != -1) {
 		    	return c.substring(drumName.length+1, drumName.length+2);
@@ -38,5 +37,16 @@ var cookies = {
 		}
 
 		return "";
-	}
+	},
+
+	deleteAllCookies() {
+    var cookies = document.cookie.split(";");
+
+    for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    }
+}
 };

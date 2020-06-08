@@ -5,12 +5,12 @@ var keysettings = {
 		drumObject.legend.empty().append(drumObject.key.toString() + " - " + drumObject.name.toString());
 	},
 		resetAllKeys(){
-		setNewDrumKey(conga, 'S');
-		setNewDrumKey(cymbal, 'A');
-		setNewDrumKey(bass, 'F');
-		setNewDrumKey(bigtom, 'D');
-		setNewDrumKey(smalltom, 'J');
-		setNewDrumKey(hihat, 'L');
-		setNewDrumKey(snare, 'K');
+		keysettings.setNewDrumKey(conga, 'S');
+		keysettings.setNewDrumKey(cymbal, 'A');
+		keysettings.setNewDrumKey(bass, 'F');
+		keysettings.setNewDrumKey(bigtom, 'D');
+		keysettings.setNewDrumKey(smalltom, 'J');
+		keysettings.setNewDrumKey(hihat, 'L');
+		keysettings.setNewDrumKey(snare, 'K');
 	}
 };

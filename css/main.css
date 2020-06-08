@@ -54,9 +54,8 @@ h2{
 	font-size:18px; 
 }
 #content{
-    width: 70%;
+    width: 930px;
     height: 460px;
-    margin-left: 15%;
     margin-top: 20px;
 }
 #history{
@@ -78,7 +77,18 @@ h2{
 
 }
 #rightDiv{
-	float:right;
+	float:left;
+}
+#middleDiv{
+	width: 530px;
+    height: 350px;
+    float: left;
+}
+#leftDiv {
+	float: left;
+    width: 150px;
+    height: auto;
+
 }
 .legend{
 	width:170px;
@@ -141,7 +151,6 @@ h2{
 }
 #demo{
 	clear: both;
-	padding-top: 2%;
 }
 #button1{
 	height: 42px;

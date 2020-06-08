@@ -9,28 +9,40 @@
 	</head>	
 	<body>
 		<div class="wrapper">
+		<center>
 			<div id="header">
 				<h1>Virtual drummer</h1>
 				<p id="subheading">Learn how to play the drums!</p>
 			</div>
 			<div id="content">
+				<div id="leftDiv">
 				<div id="history" class="yellowBox">
 					<h2>History</h2>
 					<div id="historycontent">
 					</div>
 				</div>
-				<div id="drums">
-					<img id="cymbal" src="img/cymbal.png">
-					<img id="conga" src="img/conga.png">
-					<img id="bigtom" src="img/bigtom.png">
-					<img id="bigtomarm" src="img/bigtomarm.png">
-					<img id="bass" src="img/bass.png">
-					<img id="smalltomarm" src="img/smalltomarm.png">
-					<img id="smalltom" src="img/smalltom.png">
-					<img id="snare" src="img/snare.png">
-					<img id="hihat" src="img/hihatfull.png">
 				</div>
-				<div id="popup" drumkey="" class="hidden"><br><div id="currentKey"></div><div id="selectNewKey" class="hidden"><div>Press down your new key... </div><div id="bigLetterInPopup"></div><br><button class="cancelBtn">Cancel</button><button id="OkBtn">Done</button></div><button class="cancelBtn">Cancel</button><button id='changeKey'>Change key</button></div>
+				<div id="middleDiv">
+					<div id="drums">
+						<img id="cymbal" src="img/cymbal.png">
+						<img id="conga" src="img/conga.png">
+						<img id="bigtom" src="img/bigtom.png">
+						<img id="bigtomarm" src="img/bigtomarm.png">
+						<img id="bass" src="img/bass.png">
+						<img id="smalltomarm" src="img/smalltomarm.png">
+						<img id="smalltom" src="img/smalltom.png">
+						<img id="snare" src="img/snare.png">
+						<img id="hihat" src="img/hihatfull.png">
+					</div>
+					<div id="popup" drumkey="" class="hidden"><br>
+						<div id="currentKey"></div>
+						<div id="selectNewKey" class="hidden">
+							<div>Press down your new key... </div>
+							<div id="bigLetterInPopup"></div><br>
+							<button class="cancelBtn">Cancel</button><button id="OkBtn">Done</button>
+						</div><button class="cancelBtn">Cancel</button><button id='changeKey'>Change key</button>
+					</div>
+				</div>
 				<div id="rightDiv">
 					<div class="yellowBox legend">
 						<ul class="drumlist">
@@ -44,17 +56,12 @@
 						</ul> 
 						<center><button id="resetKeysBtn">Reset keys</button></center>
 					</div><br>
-					<div class="metronome yellowBox">
-						<span>hello</span>
-					</div>
-				</div>
-				<div id="dialog" title="Basic dialog">
-  					<div id="dialogBox" class="dialog"></div>
 				</div>
 				<div id ="demo">
 					<input type="image" src="img/playbuttonred.png" id="drumdemo"/>
 				</div>
 			</div>
+			</center>
 			<div class="push">
 			</div>
 		</div>
