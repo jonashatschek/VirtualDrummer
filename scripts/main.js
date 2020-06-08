@@ -12,6 +12,22 @@ $(document).ready(function(){
 
 	cookies.checkCookie(drumArray, drumEnum);
 
+	var paper = Raphael("metronome_container", 78, 80);
+
+	var m = metronome({
+	    len: 75,
+	    angle: 20,
+	    tick: tick,
+	    complete: done,
+	    paper: paper,
+	    audio: "https://github.com/wilson428/metronome/blob/master/tick.wav?raw=true"
+	});
+
+	m.make_input("#inputs");
+
+	m.shapes().outline.attr("fill", "#0962ba");
+	m.shapes().arm.attr("stroke", "#EEE");
+
 	$('#drumdemo').click(function () {
 
 	    var keysArray = [bass.keyCode, hihat.keyCode, snare.keyCode, hihat.keyCode, bass.keyCode, hihat.keyCode, snare.keyCode, hihat.keyCode, bass.keyCode, hihat.keyCode, snare.keyCode, hihat.keyCode, bass.keyCode, hihat.keyCode, snare.keyCode, hihat.keyCode, cymbal.keyCode];
@@ -66,6 +82,17 @@ $(document).ready(function(){
 
 });
 
+//metronone
+function tick(t) {
+    $("<div />").html(t % 2 === 1 ? "Tick" : "Tock").addClass("statusline").appendTo(".status");
+	$("#count").html(t);    
+}
+
+function done() {
+    $("<div />").html("Done!").addClass("statusline").css("background-color", "#FFFF99").appendTo(".status");
+    $("#startstop").html("start");
+}
+
 function reloadPopup(){
 	$("#OkBtn").removeClass("hidden");
 	$("#changeKey").addClass("hidden");
@@ -78,6 +105,8 @@ function hidePopup(){
 	$("#selectNewKey").addClass("hidden");
 	$("#changeKey").removeClass("hidden");
 }
+
+ 
 
 function getDrumName(number){
 
