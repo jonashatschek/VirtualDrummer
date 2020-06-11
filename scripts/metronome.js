@@ -2,24 +2,24 @@ var metronome = function(opts) {
     //primary variables
     var l = typeof opts.len !== "undefined" ? opts.len : 200, // length of metronome arm
         r = typeof opts.angle !== "undefined" ? opts.angle : 20, //max angle from upright 
-    	w = 2 * l * Math.cos(r),
+        w = 2 * l * Math.cos(r),
         tick_func = typeof opts.tick !== "undefined" ? opts.tick : function() {}, //function to call with each tick
         end_func = typeof opts.complete !== "undefined" ? opts.complete : function() {}, //function to call on completion
         playSound = typeof opts.sound !== "undefined" ? opts.sound : true; 
 
-	// initialize Raphael paper if need be        
+    // initialize Raphael paper if need be        
     switch(typeof opts.paper) {
-		case "string": paper = Raphael(opts.paper, w, l + 20); break;
-		default: paper = Raphael(0, 0, w, l + 20); break;
+        case "string": paper = Raphael(opts.paper, w, l + 20); break;
+        default: paper = Raphael(0, 0, w, l + 20); break;
     }
 
-	// initialize audio if need be
+    // initialize audio if need be
     if (playSound && opts.audio) {
-		// initialize audio
-		var sound = document.createElement('audio');
-		sound.setAttribute('src', opts.audio);
-		sound.setAttribute('id', 'tick');
-		document.body.appendChild(sound);
+        // initialize audio
+        var sound = document.createElement('audio');
+        sound.setAttribute('src', opts.audio);
+        sound.setAttribute('id', 'tick');
+        document.body.appendChild(sound);
     }
     
     // derivative variables
@@ -77,91 +77,53 @@ var metronome = function(opts) {
 
     return {
         start: function(tempo, repeats) {
+            console.log("from start!");
             tick_count = 0;
             mn.attr("transform", "R-20 " + x + "," + y);                
             
             //2 iterations per animation * 60000 ms per minute / tempo
             var interval = 120000 / tempo;
 
-			var animationDone = function() { 
-				tick(this, repeats); 
-			};
-			
+            var animationDone = function() { 
+                tick(this, repeats); 
+            };
+            
             var ticktockAnimationParam = {
                 "50%": { transform:"R20 " + x + "," + y, easing: "sinoid", callback: animationDone },
                 "100%": { transform:"R-20 " + x + "," + y, easing: "sinoid", callback: animationDone }
             };
             
             //animation            
-			var ticktock = Raphael.animation(ticktockAnimationParam, interval).repeat(repeats / 2);
-			arm.animate(ticktock);
-			weight.animateWith(arm, ticktockAnimationParam, ticktock); 
+            var ticktock = Raphael.animation(ticktockAnimationParam, interval).repeat(repeats / 2);
+            arm.animate(ticktock);
+            weight.animateWith(arm, ticktockAnimationParam, ticktock); 
         },
         stop: function() {
+            console.log("from stop!");
             mn.stop();
             mn.attr("transform", "R0 " + x + "," + y);                
             end_func();
         },
         shapes: function() {
-        	return {
-        		outline: outline,
-        		arm: arm,
-        		weight: weight,
-        		vertex: vertex        	
-        	}
+            console.log("from shapes!");
+            return {
+                outline: outline,
+                arm: arm,
+                weight: weight,
+                vertex: vertex          
+            }
         },
         make_input: function(el) {
-        	$("<div />", {
-        		html: 	"<span>tempo: </span>" + 
-        				"<input class='metr_input' type='text' id='tempo' value='100' />" +
-						"<span>ticks: </span>" +
-						"<input class='metr_input' type='text' id='ticks' value='8' />" +
-						"<button id='startstop'>start</button>" +
-						"<div id='count'>0</div>"
-        	}).appendTo(el);
-        	
-        $('#startstop').click(function() {
-
-            var paper = Raphael("metronome_container", 78, 80);
-
-            var m = metronome({
-            len: 75,
-            angle: 20,
-            tick: tick,
-            complete: done,
-            paper: paper,
-            audio: "https://github.com/wilson428/metronome/blob/master/tick.wav?raw=true"
-            });
-
-            m.make_input("#inputs");
-
-            m.shapes().outline.attr("fill", "#0962ba");
-            m.shapes().arm.attr("stroke", "#EEE");
-
-            // start animation
-            if ($(this).html() === "start") {
-            $(this).html("stop");            
-            
-            //get values for tempo and ticks and restrict
-            var tempo = parseInt($('#tempo').val(), 10);
-            if (!tempo) { tempo = 60; }
-            else if (tempo > 200) { tempo = 200; }
-            else if (tempo < 30) { tempo = 30; }
-            $("#tempo").val(tempo);
-            
-            var ticks = parseInt($('#ticks').val(), 10);
-            if (!ticks) { ticks = 20; }
-            else if (ticks > 60) { ticks = 60; }
-            else if (ticks < 8) { ticks = 8; }
-            $("#ticks").val(ticks); 
-            
-            m.start(tempo, ticks);
-        } else {
-            $(this).html("start");
-            m.stop();
-        }
-        });
-    
+            console.log("from make input!");
+            $("<div />", {
+                html:   "<span>tempo: </span>" + 
+                        "<input class='metr_input' type='text' id='tempo' value='100' />" +
+                        "<span>ticks: </span>" +
+                        "<input class='metr_input' type='text' id='ticks' value='8' />" +
+                        "<button id='startstop'>start</button>" +
+                        "<div id='count'>0</div>"
+            }).appendTo(el);
+                    
         }
     };
 };

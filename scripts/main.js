@@ -12,22 +12,6 @@ $(document).ready(function(){
 
 	cookies.checkCookie(drumArray, drumEnum);
 
-	var paper = Raphael("metronome_container", 78, 80);
-
-	var m = metronome({
-	    len: 75,
-	    angle: 20,
-	    tick: tick,
-	    complete: done,
-	    paper: paper,
-	    audio: "https://github.com/wilson428/metronome/blob/master/tick.wav?raw=true"
-	});
-
-	m.make_input("#inputs");
-
-	m.shapes().outline.attr("fill", "#0962ba");
-	m.shapes().arm.attr("stroke", "#EEE");
-
 	$('#drumdemo').click(function () {
 
 	    var keysArray = [bass.keyCode, hihat.keyCode, snare.keyCode, hihat.keyCode, bass.keyCode, hihat.keyCode, snare.keyCode, hihat.keyCode, bass.keyCode, hihat.keyCode, snare.keyCode, hihat.keyCode, bass.keyCode, hihat.keyCode, snare.keyCode, hihat.keyCode, cymbal.keyCode];
@@ -106,7 +90,7 @@ function hidePopup(){
 	$("#changeKey").removeClass("hidden");
 }
 
- 
+
 
 function getDrumName(number){
 
