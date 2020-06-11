@@ -1,5 +1,9 @@
 $(document).ready(function(){
 
+	//TODO: -add metronone skrrt sound
+	//TODO: -check fix of delete cookies
+	//TODO: -fugire out mobile
+
 	cymbal = new Drum("A", "65", $('#cymbal'), $('ul li:nth-child(1)'), "sounds/cymbal.ogg", 'Cymbal');
 	conga = new Drum("S", "83", $('#conga'), $('ul li:nth-child(2)'), "sounds/conga.ogg", 'Conga');
 	bigtom = new Drum("D", "68", $('#bigtom'), $('ul li:nth-child(3)'), "sounds/tom2.ogg", 'Big tom');
