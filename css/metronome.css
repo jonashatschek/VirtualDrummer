@@ -5,11 +5,11 @@
 
 .status {
     width: 120px;
-    height: 145px;
+    height: 76px;
     padding: 10px;
     overflow-y: auto;
-    margin-left: -267px;
-    margin-top: -51px;
+    margin-right: -143px;
+    margin-top: --5px;
 }
 
 .statusline {
@@ -32,15 +32,14 @@
 }
 
 #inputsDiv {
-    margin-right: 300px;
+    padding: 20px;
 }
 #metronome_container {
-width:200px;
-height:200px;
--webkit-transform: translate(-0px,0px);
-transform: translate(-0px,0px);
-position: relative;
-top: 0px;
-left: 0px;
+    width: 320px;
+    height: 159px;
+    padding: 10px;
+    overflow-y: auto;
+    margin-left: -400px;
+    margin-top: -80px;
 
 }
