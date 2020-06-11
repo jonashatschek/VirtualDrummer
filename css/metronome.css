@@ -6,7 +6,7 @@
 .status {
     width: 120px;
     height: 76px;
-    padding: 10px;
+    padding: 20px;
     overflow-y: auto;
     margin-right: -143px;
     margin-top: --5px;
@@ -36,10 +36,10 @@
 }
 #metronome_container {
     width: 320px;
-    height: 159px;
+    height: 179px;
     padding: 10px;
     overflow-y: auto;
     margin-left: -400px;
-    margin-top: -80px;
+    margin-top: -105px;
 
 }
