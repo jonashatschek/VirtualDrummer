@@ -16,7 +16,7 @@ $(document).ready(function(){
 	var svgElement = $(document).find('svg');
 	$('.metronomeSvg').html(svgElement);
 	//svgElement.insertAfter("#metronome_container");
-	svgElement.attr('style', "overflow: hidden; position: absolute; left: 46px; top: 19px;")
+	svgElement.attr('style', "overflow: hidden; position: absolute; left: 46px; top: 4px;")
 
 	cookies.checkCookie(drumArray, drumEnum);
 

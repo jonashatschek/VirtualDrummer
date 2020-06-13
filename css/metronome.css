@@ -32,15 +32,15 @@
 }
 
 #inputsDiv {
-    padding: 20px;
+    /*padding: 20px;*/
 }
 #metronome_container {
     width: 320px;
-    height: 179px;
+    height: 148px;
     padding: 10px;
     overflow-y: auto;
     margin-left: -400px;
-    margin-top: -105px;
+    margin-top: -76px;
 
 }
 
