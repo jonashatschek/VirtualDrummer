@@ -11,6 +11,7 @@ $( document ).ready(function() {
     }
 
     var paper = Raphael("metronome_container", 78, 80);
+        //var paper = Raphael("metronome_container", 100, 50);
 
     var m = metronome({
         len: 75,

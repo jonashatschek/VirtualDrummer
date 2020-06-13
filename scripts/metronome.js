@@ -77,7 +77,7 @@ var metronome = function(opts) {
 
     return {
         start: function(tempo, repeats) {
-            console.log("from start!");
+
             tick_count = 0;
             mn.attr("transform", "R-20 " + x + "," + y);                
             
@@ -99,13 +99,13 @@ var metronome = function(opts) {
             weight.animateWith(arm, ticktockAnimationParam, ticktock); 
         },
         stop: function() {
-            console.log("from stop!");
+
             mn.stop();
             mn.attr("transform", "R0 " + x + "," + y);                
             end_func();
         },
         shapes: function() {
-            console.log("from shapes!");
+
             return {
                 outline: outline,
                 arm: arm,
@@ -114,7 +114,6 @@ var metronome = function(opts) {
             }
         },
         make_input: function(el) {
-            console.log("from make input!");
             $("<div />", {
                 html:   "<div id='inputsDiv'>" +
                         "<span>tempo: </span>" + 

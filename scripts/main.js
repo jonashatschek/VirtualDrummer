@@ -13,7 +13,10 @@ $(document).ready(function(){
 	hihat = new Drum("L", "76", $('#hihat'), $('ul li:nth-child(7)'), "sounds/hihat.ogg", 'Hihat');
 
 	var drumArray = [conga, bass, hihat, cymbal, smalltom, bigtom, snare];
-	$(document).find('svg').attr('style', "overflow: hidden; position: absolute;  left: 510px; top: 485px;")
+	var svgElement = $(document).find('svg');
+	$('.metronomeSvg').html(svgElement);
+	//svgElement.insertAfter("#metronome_container");
+	svgElement.attr('style', "overflow: hidden; position: absolute; left: 46px; top: 19px;")
 
 	cookies.checkCookie(drumArray, drumEnum);
 
